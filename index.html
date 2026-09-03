@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rohit Vikraanth S | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <div class="logo">RV<span>.</span></div>
+    <div class="nav-actions">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="Rohit_Resume.pdf" download class="btn-cv">Download CV</a>
+      <button id="theme-btn" title="Toggle Theme">🌓</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero / Profile Section -->
+    <section class="hero" id="about">
+      <span class="badge-role">Full Stack & ML Enthusiast</span>
+      <h1>Rohit Vikraanth S</h1>
+      <p class="summary">
+        Motivated B.Tech Computer Science and Engineering student at SRM Institute of Science and Technology, Vadapalani (CGPA: 7.81/10). Passionate about building data-driven applications, full-stack systems, and applying machine learning to real-world latency challenges.
+      </p>
+      <div class="contact-bar">
+        <a href="mailto:rs5483@srmist.edu.in">✉ rs5483@srmist.edu.in</a>
+        <a href="tel:9080345650">📞 +91 9080345650</a>
+      </div>
+    </section>
+
+    <!-- Interactive Projects Section -->
+    <section id="projects">
+      <div class="section-title-wrap">
+        <h2>Projects</h2>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ml">Machine Learning</button>
+          <button class="filter-btn" data-filter="data">Data Science</button>
+        </div>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card" data-category="ml">
+          <div class="card-head">
+            <span class="tag">Machine Learning</span>
+            <span class="timeline">Mar 2026 – Present</span>
+          </div>
+          <h3>AI-Based Predictive Caching</h3>
+          <p>Developed an AI-based predictive caching solution using Python, TensorFlow, and LSTM to optimize Content Delivery Network (CDN) performance and lower latency.</p>
+          <div class="tech-tags">
+            <span>Python</span><span>TensorFlow</span><span>LSTM</span>
+          </div>
+          <a class="project-link" href="https://ijpub.org/ijvra/track.php" target="_blank" rel="noreferrer">View Publication ↗</a>
+        </div>
+
+        <div class="project-card" data-category="data">
+          <div class="card-head">
+            <span class="tag">Data Science</span>
+            <span class="timeline">Oct 2025 – Present</span>
+          </div>
+          <h3>IPL Team Winning Prediction Dataset</h3>
+          <p>Built predictive machine learning models in Python using historical match statistics, tournament analytics, and performance parameters.</p>
+          <div class="tech-tags">
+            <span>Python</span><span>Machine Learning</span><span>Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Technical Arsenal</h2>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Languages</h3>
+          <div class="tech-tags">
+            <span>Python</span><span>Java</span><span>C++</span><span>MySQL</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>Web & Domains</h3>
+          <div class="tech-tags">
+            <span>Full Stack Web Development</span><span>Frontend</span><span>Backend</span><span>Machine Learning</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>Certifications</h3>
+          <p class="cert-list">NASSCOM (Cloud & ML) • Board Infinity (Data Science) • MongoDB (Full Stack) • UpGrad (NLP)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
