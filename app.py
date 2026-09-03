@@ -1,270 +1,266 @@
 from pathlib import Path
 import streamlit as st
-import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="ROHIT VIKRAANTH S | RESUME",
-    page_icon="📄",
+    page_title="ROHIT VIKRAANTH S | PORTFOLIO",
+    page_icon="💼",
     layout="centered",
 )
 
-# Download Button at the top
-pdf_path = Path("Rohit_Resume.pdf")
-if not pdf_path.exists():
-    pdf_path = Path("S.Rohit-Resume.pdf")
+# Custom Styling for Centers, Capital Headings, and Box Containers
+st.markdown(
+    """
+<style>
+  /* Base clean container width */
+  .block-container {
+    max-width: 820px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
 
+  /* Centered and Capitalized Headings */
+  .main-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.2rem;
+  }
+  .sub-title {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 0.8rem;
+  }
+  .contact-row {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    color: #cbd5e1;
+  }
+  .section-header {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #38bdf8;
+    margin: 1.5rem 0 0.8rem 0;
+  }
+
+  /* Card / Box Styling */
+  .card-box {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+  .card-date {
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+  .pill {
+    display: inline-block;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.85rem;
+    margin: 0.2rem 0.2rem;
+    color: #e2e8f0;
+  }
+
+  /* Centered Download Button Container */
+  .stDownloadButton {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
+# Top Profile Header (Centered & Capitalized)
+st.markdown('<div class="main-title">ROHIT VIKRAANTH S</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="sub-title">Full Stack Web Development & Machine Learning</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
+<div class="contact-row">
+  ✉️ <a href="mailto:rs5483@srmist.edu.in" style="color: #38bdf8; text-decoration: none;">rs5483@srmist.edu.in</a> &nbsp;|&nbsp; 
+  📞 +91 9080345650 &nbsp;|&nbsp; 
+  🎓 Graduation: 2027
+</div>
+""",
+    unsafe_allow_html=True,
+)
+
+# Centered Download CV Button
+pdf_path = Path("S.Rohit-Resume.pdf")
 if pdf_path.exists():
     with open(pdf_path, "rb") as f:
         st.download_button(
-            label="📄 DOWNLOAD OFFICIAL RESUME (PDF)",
+            label="📄 DOWNLOAD RESUME (CV)",
             data=f.read(),
             file_name="Rohit_Vikraanth_Resume.pdf",
             mime="application/pdf",
         )
 
-# Pure HTML/CSS Canvas (Renders cleanly without markdown indentation bugs)
-html_content = """<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-body {
-  background-color: transparent;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-}
+# Section: Professional Summary
+st.markdown(
+    '<div class="section-header">PROFESSIONAL SUMMARY</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
+<div class="card-box">
+  Motivated B.Tech Computer Science and Engineering student with a strong interest in Full Stack Development and Machine Learning. Skilled in developing data-driven applications using Python, Java, JavaScript, and modern web technologies. Passionate about building scalable software solutions, applying artificial intelligence to real-world problems, and continuously learning emerging technologies to contribute effectively in software development and AI-driven projects.
+</div>
+""",
+    unsafe_allow_html=True,
+)
 
-/* Strict A4 Proportions */
-.a4-container {
-  width: 794px;
-  min-height: 1123px;
-  background: #ffffff;
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-/* Left Dark Panel (Zero gap) */
-.left-pane {
-  width: 34%;
-  background-color: #2b2b2b;
-  color: #ffffff;
-  padding: 40px 25px;
-}
-
-/* Right White Panel (Zero gap) */
-.right-pane {
-  width: 66%;
-  background-color: #ffffff;
-  color: #1f2421;
-  padding: 40px 35px;
-}
-
-/* Left Side Styles */
-.dark-title {
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-top: 30px;
-  margin-bottom: 12px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid #555555;
-}
-.dark-title:first-child {
-  margin-top: 0;
-}
-.dark-text {
-  font-size: 13px;
-  color: #d1d5db;
-  margin-bottom: 8px;
-  line-height: 1.5;
-  word-break: break-word;
-}
-.dark-text a {
-  color: #93c5fd;
-  text-decoration: none;
-}
-.skill-tag {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-bottom: 7px;
-  display: block;
-}
-
-/* Right Side Center Header */
-.header-name {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #1f2421;
-  margin: 0;
-}
-.header-role {
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #64748b;
-  margin-top: 8px;
-}
-.header-location {
-  text-align: center;
-  font-size: 13px;
-  color: #475569;
-  margin-top: 4px;
-  margin-bottom: 30px;
-}
-
-/* Right Side Section Headings */
-.light-title {
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #1f2421;
-  margin-top: 24px;
-  margin-bottom: 10px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #1f2421;
-}
-.light-title:first-of-type {
-  margin-top: 0;
-}
-
-.body-text {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: #334155;
-}
-.item-head {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #0f172a;
-}
-.item-date {
-  font-size: 12px;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 5px;
-}
-.bullets {
-  padding-left: 18px;
-  margin-top: 4px;
-  margin-bottom: 14px;
-  color: #334155;
-  font-size: 13px;
-  line-height: 1.55;
-}
-</style>
-</head>
-<body>
-
-<div class="a4-container">
-
-  <!-- LEFT DARK SIDEBAR -->
-  <div class="left-pane">
-    
-    <div class="dark-title">CONTACT</div>
-    <div class="dark-text">✉️ <a href="mailto:rs5483@srmist.edu.in">rs5483@srmist.edu.in</a>[cite: 1]</div>
-    <div class="dark-text">📞 +91 9080345650[cite: 1]</div>
-    <div class="dark-text">📍 Chennai, India</div>
-
-    <div class="dark-title">MY SKILLS</div>
-    <div class="skill-tag">FULL STACK WEB DEV[cite: 1]</div>
-    <div class="skill-tag">MACHINE LEARNING[cite: 1]</div>
-    <div class="skill-tag">PYTHON PROGRAMMING[cite: 1]</div>
-    <div class="skill-tag">JAVA[cite: 1]</div>
-    <div class="skill-tag">C++[cite: 1]</div>
-    <div class="skill-tag">MYSQL[cite: 1]</div>
-    <div class="skill-tag">DEEP LEARNING / LSTM[cite: 1]</div>
-    <div class="skill-tag">FRONTEND DEVELOPMENT[cite: 1]</div>
-    <div class="skill-tag">BUSINESS ANALYTICS[cite: 1]</div>
-
-    <div class="dark-title">CERTIFICATIONS</div>
-    <div class="dark-text">• Data Science — Board Infinity[cite: 1]</div>
-    <div class="dark-text">• Cloud Computing — NASSCOM[cite: 1]</div>
-    <div class="dark-text">• Machine Learning — NASSCOM[cite: 1]</div>
-    <div class="dark-text">• NLP — UpGrad[cite: 1]</div>
-    <div class="dark-text">• Full Stack Dev — MongoDB[cite: 1]</div>
-    <div class="dark-text">• Networks — SRM & SkillUp[cite: 1]</div>
-    <div class="dark-text">• Publication — IJARCCE[cite: 1]</div>
-
+# Section: Education
+st.markdown(
+    '<div class="section-header">EDUCATION</div>', unsafe_allow_html=True
+)
+st.markdown(
+    """
+<div class="card-box">
+  <div class="card-header">
+    <span>SRM Institute of Science and Technology, Vadapalani</span>
+    <span class="card-date">2023 – 2027</span>
   </div>
-
-  <!-- RIGHT WHITE PANEL -->
-  <div class="right-pane">
-    
-    <!-- CENTERED NAME & TITLE IN ALL CAPS -->
-    <h1 class="header-name">ROHIT VIKRAANTH S</h1>
-    <div class="header-role">FULL-STACK DEVELOPER & ML ENTHUSIAST</div>
-    <div class="header-location">📍 SRM Institute of Science and Technology, Vadapalani[cite: 1]</div>
-
-    <!-- ABOUT ME -->
-    <div class="light-title">⦿ ABOUT ME</div>
-    <div class="body-text" style="margin-bottom: 20px;">
-      Motivated B.Tech Computer Science and Engineering student with a strong interest in Full Stack Development and Machine Learning[cite: 1]. Skilled in developing scalable, data-driven applications using Python, Java, JavaScript, and modern web technologies[cite: 1]. Passionate about building software solutions, sequence modeling, and applying artificial intelligence to real-world latency challenges[cite: 1].
-    </div>
-
-    <!-- EDUCATION -->
-    <div class="light-title">📖 MY EDUCATION</div>
-    <div style="border-left: 3px solid #1f2421; padding-left: 10px; margin-bottom: 20px;">
-      <div class="item-head">B.Tech in Computer Science and Engineering[cite: 1]</div>
-      <div style="font-size: 13px; color: #334155;">SRM Institute of Science and Technology, Vadapalani[cite: 1]</div>
-      <div class="item-date">GRADUATION: 2027 | CGPA: 7.81 / 10[cite: 1]</div>
-    </div>
-
-    <!-- PROJECTS & RESEARCH -->
-    <div class="light-title">💼 PROJECTS & RESEARCH</div>
-    
-    <div>
-      <div class="item-head">AI-Based Predictive Caching[cite: 1]</div>
-      <div class="item-date">March 2026 – Present | Python, TensorFlow, LSTM[cite: 1]</div>
-      <ul class="bullets">
-        <li>Developed an AI-based predictive caching solution using Python, TensorFlow, and LSTM to improve Content Delivery Network (CDN) performance[cite: 1].</li>
-        <li>Applied sequence prediction techniques to optimize caching decisions and minimize network latency[cite: 1].</li>
-        <li>Publication Track: <a href="https://ijpub.org/ijvra/track.php" target="_blank" style="color: #2563eb; text-decoration: none;">ijpub.org/ijvra/track.php ↗</a>[cite: 1]</li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="item-head">IPL Team Winning Prediction Dataset[cite: 1]</div>
-      <div class="item-date">October 2025 – Present | Python, Machine Learning[cite: 1]</div>
-      <ul class="bullets">
-        <li>Engineered machine learning models in Python to forecast match outcomes using historical statistics and performance metrics[cite: 1].</li>
-      </ul>
-    </div>
-
-    <!-- PUBLICATIONS -->
-    <div class="light-title">📝 PUBLICATIONS</div>
-    <ul class="bullets" style="margin-bottom: 0;">
-      <li><strong>AI Based Predictive Caching</strong> — International Journal Track (April 2026)[cite: 1]</li>
-      <li><strong>IPL Winning Predictions Using Machine Learning</strong> — Published (November 2025)[cite: 1]</li>
-    </ul>
-
+  <div style="color: #94a3b8; font-size: 0.95rem;">
+    B.Tech in Computer Science and Engineering &nbsp;•&nbsp; <strong>CGPA: 7.81 / 10</strong>
   </div>
+</div>
+""",
+    unsafe_allow_html=True,
+)
 
+# Section: Projects
+st.markdown('<div class="section-header">PROJECTS</div>', unsafe_allow_html=True)
+
+st.markdown(
+    """
+<div class="card-box">
+  <div class="card-header">
+    <span>AI Based Predictive Caching</span>
+    <span class="card-date">Mar 2026 – Present</span>
+  </div>
+  <div style="color: #38bdf8; font-size: 0.85rem; margin-bottom: 0.5rem;">Tech: Python, TensorFlow, LSTM</div>
+  <ul style="margin: 0; padding-left: 1.2rem; color: #cbd5e1; font-size: 0.95rem;">
+    <li>Developed an AI-based predictive caching solution using Python, TensorFlow, and LSTM to improve Content Delivery Network (CDN) performance.</li>
+    <li>Applied sequence prediction techniques to optimize caching decisions and reduce network latency.</li>
+    <li>Publication Track: <a href="https://ijpub.org/ijvra/track.php" target="_blank" style="color: #38bdf8; text-decoration: none;">ijpub.org/ijvra/track.php ↗</a></li>
+  </ul>
 </div>
 
-</body>
-</html>
-"""
+<div class="card-box">
+  <div class="card-header">
+    <span>IPL Team Winning Prediction Dataset</span>
+    <span class="card-date">Oct 2025 – Present</span>
+  </div>
+  <div style="color: #38bdf8; font-size: 0.85rem; margin-bottom: 0.5rem;">Tech: Python, Machine Learning, Statistical Modeling</div>
+  <ul style="margin: 0; padding-left: 1.2rem; color: #cbd5e1; font-size: 0.95rem;">
+    <li>Built machine learning models in Python to predict IPL match outcomes using historical match statistics and performance metrics.</li>
+  </ul>
+</div>
+""",
+    unsafe_allow_html=True,
+)
 
-# Render full A4 canvas
-components.html(html_content, height=1180, scrolling=False)
+# Section: Technical Skills
+st.markdown(
+    '<div class="section-header">TECHNICAL SKILLS</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
+<div class="card-box">
+  <div style="margin-bottom: 0.75rem;">
+    <strong style="color: #f1f5f9;">Programming Languages:</strong><br>
+    <div style="margin-top: 0.35rem;">
+      <span class="pill">Python</span>
+      <span class="pill">Java</span>
+      <span class="pill">MySQL</span>
+      <span class="pill">C++</span>
+      <span class="pill">JavaScript</span>
+    </div>
+  </div>
+  <div style="margin-bottom: 0.75rem;">
+    <strong style="color: #f1f5f9;">Web & Software Engineering:</strong><br>
+    <div style="margin-top: 0.35rem;">
+      <span class="pill">Full Stack Web Development</span>
+      <span class="pill">Frontend Development</span>
+      <span class="pill">Backend Development</span>
+      <span class="pill">Business Analytics</span>
+    </div>
+  </div>
+  <div>
+    <strong style="color: #f1f5f9;">Productivity & Tools:</strong><br>
+    <div style="margin-top: 0.35rem;">
+      <span class="pill">Microsoft Word</span>
+      <span class="pill">Microsoft Excel</span>
+      <span class="pill">Microsoft PowerPoint</span>
+      <span class="pill">Git & GitHub</span>
+    </div>
+  </div>
+</div>
+""",
+    unsafe_allow_html=True,
+)
+
+# Section: Certifications (Written out completely)
+st.markdown(
+    '<div class="section-header">CERTIFICATIONS</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
+<div class="card-box">
+  <ul style="margin: 0; padding-left: 1.2rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.8;">
+    <li><strong>Data Science Professional Certification</strong> — Board Infinity</li>
+    <li><strong>Cloud Computing Certification</strong> — NASSCOM</li>
+    <li><strong>Machine Learning Specialization</strong> — NASSCOM</li>
+    <li><strong>Natural Language Processing (NLP)</strong> — UpGrad</li>
+    <li><strong>Full Stack Web Development Certification</strong> — MongoDB</li>
+    <li><strong>Computer Networks Certification</strong> — SRM Institute of Science and Technology, Vadapalani</li>
+    <li><strong>Computer Networks Fundamentals</strong> — SkillUp</li>
+    <li><strong>Project Publication Certification</strong> — International Journal of Advanced Research in Computer and Communication Engineering (IJARCCE)</li>
+  </ul>
+</div>
+""",
+    unsafe_allow_html=True,
+)
+
+# Section: Publications
+st.markdown(
+    '<div class="section-header">PUBLICATIONS</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
+<div class="card-box">
+  <ul style="margin: 0; padding-left: 1.2rem; color: #cbd5e1; font-size: 0.95rem; line-height: 1.8;">
+    <li><strong>AI Based Predictive Caching</strong> — Published in April 2026</li>
+    <li><strong>IPL Winning Predictions Using Machine Learning</strong> — Published in November 2025</li>
+  </ul>
+</div>
+""",
+    unsafe_allow_html=True,
+)
